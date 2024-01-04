@@ -31,36 +31,32 @@ workflows:
     jobs:
       - build:
           filters:
-            tags:
-              only: /^python.*/
             branches:
-              ignore: /.*/
+              only: /^python.*/
+            
       - test:
           requires:
             - build
           filters:
-            tags:
-              only: /^python.*/
             branches:
-              ignore: /.*/
+              only: /^python.*/
+            
       - hold:
           type: approval
           requires:
             - build
             - test
           filters:
-            tags:
-              only: /^python.*/
             branches:
-              ignore: /.*/
+              only: /^python.*/
+            
 
       - deploy:
           requires:
             - hold
           filters:
-            tags:
-              only: /^python.*/
             branches:
-              ignore: /.*/
+              only: /^python.*/
+            branches
       
     
