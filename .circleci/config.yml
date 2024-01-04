@@ -2,15 +2,17 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/
-    machine: true
+    working_directory: ~/circleci-python
+    docker:
+      - image: "cimg/python:3.12.1"
     resource_class: kzexu9zaxcq5tjmkujg44l/test
     steps:
       - checkout
       - run: python3 main.py
   test:
-    working_directory: ~/
-    machine: true
+    working_directory: ~/circleci-python
+    docker:
+      - image: "cimg/python:3.12.1"
     resource_class: kzexu9zaxcq5tjmkujg44l/test
     steps:
       - checkout
