@@ -2,14 +2,14 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: /home/azureuser/
+    working_directory: ~/
     machine: true
     resource_class: kzexu9zaxcq5tjmkujg44l/test
     steps:
       - checkout
       - run: python3 main.py
   test:
-    working_directory: /home/azureuser/
+    working_directory: ~/
     machine: true
     resource_class: kzexu9zaxcq5tjmkujg44l/test
     steps:
