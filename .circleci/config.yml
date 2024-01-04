@@ -57,6 +57,6 @@ workflows:
           filters:
             branches:
               only: /^python.*/
-            branches
+            
       
     
