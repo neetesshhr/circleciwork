@@ -2,29 +2,35 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/circleci-python
+    working_directory: ~/circleci-node
     machine: true
     resource_class: kzexu9zaxcq5tjmkujg44l/test
 
     steps:
       - checkout
-      - run: python3 main.py
+      - run: |
+          docker build -t node-tst .
+          
   test:
-    working_directory: ~/circleci-python
+    working_directory: ~/circleci-node
     machine: true
     resource_class: kzexu9zaxcq5tjmkujg44l/test
 
     steps:
       - checkout
-      - run: python3 main-test.py
+      - run: |
+          npm i
+          npm test
   
   deploy:
-    working_directory: ~/circleci-python
+    working_directory: ~/circleci-node
     machine: true
     resource_class: kzexu9zaxcq5tjmkujg44l/test
     steps:
       - checkout
-      - run: python3 main-deploy.py
+      - run: |
+          docker run -p 3000:3000 node-tst
+
   
 workflows:
   build_and_test:
