@@ -24,7 +24,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          docker run -p 3000:3000 node-tst -d
+          docker run -p 3000:3000 -d node-tst
 workflows:
   build_and_test:
     jobs:
