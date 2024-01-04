@@ -18,6 +18,14 @@ jobs:
       - checkout
       - run: python3 main-test.py
   
+  deploy:
+    working_directory: ~/circleci-python
+    machine: true
+    resource_class: kzexu9zaxcq5tjmkujg44l/test
+    steps:
+      - checkout
+      - run: python3 main-deploy.py
+  
 workflows:
   build_and_test:
     jobs:
@@ -25,4 +33,13 @@ workflows:
       - test:
           requires:
             - build
+      - hold:
+          type: approval
+          requires:
+            - build
+            - test
+      - deploy:
+          requires:
+            - hold
+      
     
