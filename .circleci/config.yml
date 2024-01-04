@@ -29,17 +29,30 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: /^python.*/
       - test:
           requires:
             - build
+          filters:
+            branches:
+              only: /^python.*/
       - hold:
           type: approval
           requires:
             - build
             - test
+          filters:
+            branches:
+              only: /^python.*/
+
       - deploy:
           requires:
             - hold
+          filters:
+            branches:
+              only: /^python.*/
       
     
