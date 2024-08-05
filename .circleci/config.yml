@@ -1,4 +1,5 @@
 version: 2.1
+
 jobs:
   build:
     working_directory: ~/circleci-node
@@ -8,6 +9,7 @@ jobs:
       - checkout
       - run: |
           docker build -t node-tst .
+
   test:
     working_directory: ~/circleci-node
     machine: true
@@ -17,6 +19,7 @@ jobs:
       - run: |
           npm i
           npm test
+
   deploy:
     working_directory: ~/circleci-node
     machine: true
@@ -25,8 +28,10 @@ jobs:
       - checkout
       - run: |
           docker run -p 3000:3000 -d node-tst
+
 workflows:
-  build_and_test:
+  version: 2
+  build_and_deploy:
     jobs:
       - build:
           filters:
@@ -41,7 +46,6 @@ workflows:
       - hold:
           type: approval
           requires:
-            - build
             - test
           filters:
             branches:
