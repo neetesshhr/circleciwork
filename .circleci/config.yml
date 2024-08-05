@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/circleci-node
     machine: true
-    resource_class: neetesshhr/aws-runner
+    resource_class: neetesshhr/aws-runnerr
     steps:
       - checkout
       - run: |
@@ -11,7 +11,7 @@ jobs:
   test:
     working_directory: ~/circleci-node
     machine: true
-    resource_class: neetesshhr/aws-runner
+    resource_class: neetesshhr/aws-runnerr
     steps:
       - checkout
       - run: |
@@ -20,7 +20,7 @@ jobs:
   deploy:
     working_directory: ~/circleci-node
     machine: true
-    resource_class: neetesshhr/aws-runner
+    resource_class: neetesshhr/aws-runnerr
     steps:
       - checkout
       - run: |
